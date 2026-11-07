@@ -1,3 +1,15 @@
-body {
-    background-color: #000000ff;
-}
+/* Korsakow gallery treatment — visual overrides only.
+   Does not change the player's absolute positioning or navigation logic. */
+:root { color-scheme: dark; }
+html, body, #korsakow-root { background: #11161a !important; }
+body { color: #e9e5dc; font-family: Georgia, 'Times New Roman', serif; }
+/* A visible, subtle gallery frame around the player area. */
+#korsakow-root { box-sizing: border-box; border: 12px solid #11161a; outline: 1px solid #8e7860; outline-offset: -12px; }
+/* Keep Korsakow-calculated sizes and positions untouched. */
+.MediaArea.loaded { filter: drop-shadow(0 8px 18px rgba(0,0,0,.48)); }
+.Preview.loaded { box-sizing: border-box; border: 2px solid rgba(205,174,126,.68); box-shadow: 0 6px 20px rgba(0,0,0,.55); transition: border-color .2s ease, filter .2s ease, box-shadow .2s ease; }
+.Preview.loaded:hover { border-color: #f5dfb6; filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(245,223,182,.2), 0 9px 25px rgba(0,0,0,.7); }
+.Preview .previewText .background { background-color: rgba(15,19,22,.72); }
+.PlayButton, .FullscreenButton { filter: drop-shadow(0 2px 5px rgba(0,0,0,.8)); }
+.Share { background: rgba(17,22,26,.85); border: 1px solid rgba(205,174,126,.5); }
+@media (max-width: 640px) { #korsakow-root { border-width: 5px; outline-offset: -5px; } .Preview.loaded { border-width: 1px; } }
