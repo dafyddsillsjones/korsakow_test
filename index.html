@@ -1,2 +1,55 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv=Content-Type content="text/html; charset=UTF-8"><meta name=viewport content="initial-scale=1.0, user-scalable=no"><title>Untitled Project</title><link type=text/css rel=stylesheet href=data/sys/css/korsakow.css><link type=text/css rel=stylesheet href=data/sys/css/project.css><script type=text/javascript src=data/sys/lib/ware.js></script><script type=text/javascript src=data/sys/lib/jquery.js></script><script type=text/javascript>jQuery.noConflict()</script><script type=text/javascript src=data/sys/lib/handlebars.runtime-v4.0.5.js></script><script type=text/javascript src=data/sys/lib/prototype.class.js></script><script type=text/javascript src=data/sys/js/korsakow_player.js id=korsakow-js></script><script type=text/javascript src=data/sys/js/templates.js></script><script type=text/javascript>jQuery(function() { org.korsakow.Bootstrap.load(); });
-</script></head><body><div class=breaking-error><div class="error-message project-load-failed">An error happened while loading the film.</div><div class="error-message mp4-unsupported">Your browser does not currently support the mp4 video format.<br>We recommend using the latest version of Chrome, Safari or Firefox.</div></div><div id=korsakow-root></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0e12">
+<title>Korsakow — An Interactive Film</title>
+<link rel="stylesheet" href="data/sys/css/korsakow.css">
+<link rel="stylesheet" href="data/sys/css/project.css">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0b0e12;color:#f3f0e9;font-family:Arial,Helvetica,sans-serif}body{overflow-x:hidden}
+#landing{position:fixed;inset:0;z-index:1000;display:grid;grid-template-rows:auto 1fr auto;min-height:100svh;overflow:auto;padding:clamp(24px,4vw,64px);background:radial-gradient(ellipse at 76% 24%,#2e3940 0%,transparent 42%),linear-gradient(125deg,#141a21,#080a0d 70%);transition:opacity .8s ease,visibility .8s ease}
+#landing:before{content:"";pointer-events:none;position:absolute;inset:0;opacity:.18;background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,#ffffff08 4px);mix-blend-mode:screen}
+.top,.bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:20px}.eyebrow,.number,.foot{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#aab3b7}.mark{width:30px;height:30px;border:1px solid #c6c9c4;transform:rotate(45deg);display:grid;place-items:center}.mark:after{content:"";width:10px;height:10px;background:#d6bb92}
+.hero{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;max-width:1100px;padding:50px 0}.rule{height:1px;width:clamp(60px,13vw,160px);background:#d6bb92;margin-bottom:35px}.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(68px,12vw,190px);letter-spacing:-.075em;line-height:.85;margin:0 0 28px}.hero h1 em{font-weight:400;color:#d6bb92}.description{font-size:clamp(14px,1.5vw,19px);line-height:1.6;max-width:470px;color:#c3c8c8;margin:0 0 42px}.enter{appearance:none;border:1px solid #d6bb92;background:transparent;color:#f3f0e9;cursor:pointer;padding:19px 25px;min-width:230px;display:flex;justify-content:space-between;align-items:center;gap:38px;letter-spacing:.18em;text-transform:uppercase;font-size:12px;transition:background .25s,color .25s}.enter:hover,.enter:focus-visible{background:#d6bb92;color:#0b0e12}.enter:focus-visible{outline:2px solid white;outline-offset:4px}.enter span:last-child{font-size:21px;line-height:0}.bottom{border-top:1px solid #ffffff35;padding-top:20px}.foot{letter-spacing:.13em}.is-entering{opacity:0;visibility:hidden;pointer-events:none}#korsakow-root{min-height:100vh}.breaking-error{display:none}@media(max-width:600px){.top,.bottom{align-items:flex-start}.hero h1{font-size:clamp(60px,16vw,100px)}.bottom .foot:last-child{text-align:right}}@media(prefers-reduced-motion:reduce){#landing,.enter{transition:none}}
+</style>
+<script src="data/sys/lib/ware.js"></script>
+<script src="data/sys/lib/jquery.js"></script>
+<script>jQuery.noConflict();</script>
+<script src="data/sys/lib/handlebars.runtime-v4.0.5.js"></script>
+<script src="data/sys/lib/prototype.class.js"></script>
+<script src="data/sys/js/korsakow_player.js" id="korsakow-js"></script>
+<script src="data/sys/js/templates.js"></script>
+</head>
+<body>
+<div class="breaking-error"><div class="error-message project-load-failed">An error happened while loading the film.</div><div class="error-message mp4-unsupported">Your browser does not currently support the mp4 video format. We recommend using the latest version of Chrome, Safari or Firefox.</div></div>
+<div id="korsakow-root"></div>
+<section id="landing" aria-label="Film introduction">
+  <header class="top"><div class="eyebrow">An interactive film <span aria-hidden="true">/</span> Korsakow</div><div class="mark" aria-hidden="true"></div></header>
+  <main class="hero"><div class="rule" aria-hidden="true"></div><div class="number">A non-linear viewing experience</div><h1>Korsa<em>kow.</em></h1><p class="description">There is no single path through this film. Follow an image, make a connection, and discover where it leads.</p><button class="enter" id="enter" type="button"><span>Enter the film</span><span aria-hidden="true">↗</span></button></main>
+  <footer class="bottom"><div class="foot">Explore / Navigate / Discover</div><div class="foot">A film in fragments</div></footer>
+</section>
+<script>
+(function(){
+  var started=false;
+  function start(){
+    if(started)return;
+    started=true;
+    var button=document.getElementById('enter');
+    button.disabled=true;
+    button.firstElementChild.textContent='Opening film…';
+    try{
+      org.korsakow.Bootstrap.load();
+      document.getElementById('landing').classList.add('is-entering');
+      window.setTimeout(function(){document.getElementById('landing').remove();},850);
+    }catch(e){
+      started=false;button.disabled=false;button.firstElementChild.textContent='Try again';
+      console.error('Korsakow startup failed',e);
+    }
+  }
+  document.getElementById('enter').addEventListener('click',start);
+})();
+</script>
+</body>
+</html>
