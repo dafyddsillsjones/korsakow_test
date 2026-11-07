@@ -1,0 +1,76 @@
+/* Korsakow gallery treatment — replaces data/sys/css/project.css.
+   Non-destructive: no changes to widget geometry, playback, or linking. */
+:root {
+  --gallery-bg: #0b0d10;
+  --gallery-edge: rgba(220,225,229,.19);
+  --gallery-accent: #c5a77c;
+}
+html, body {
+  background: var(--gallery-bg);
+}
+body {
+  background-image: radial-gradient(ellipse at 50% 35%, #252a2e 0%, #111519 52%, #080a0d 100%);
+  color: #e9e7e2;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+#korsakow-root {
+  isolation: isolate;
+}
+/* A quiet, exhibition-style surround. No width/height changes. */
+.interface {
+  background: #050608;
+  box-shadow: 0 0 0 1px var(--gallery-edge),
+              0 20px 75px rgba(0,0,0,.68),
+              0 0 110px rgba(197,167,124,.045);
+}
+/* Preserve Korsakow's absolute positioning and all interaction. */
+.widget {
+  box-sizing: border-box;
+}
+.widget.MainMedia,
+.widget.MediaArea,
+.widget:has(> .MainMedia) {
+  background-color: #050608;
+}
+/* Preview frames are inset so the player can keep its original geometry. */
+.widget.Preview {
+  background-color: #111417;
+  box-shadow: inset 0 0 0 1px rgba(230,229,224,.22);
+  transition: box-shadow .24s ease, filter .24s ease;
+}
+.widget.Preview.loaded:hover {
+  box-shadow: inset 0 0 0 3px var(--gallery-accent),
+              inset 0 0 28px rgba(197,167,124,.12);
+  filter: brightness(1.11);
+}
+.widget.Preview.loaded:active {
+  filter: brightness(.93);
+}
+/* For builds where the Preview class sits on a child of .widget. */
+.widget:has(> .Preview) {
+  background-color: #111417;
+  box-shadow: inset 0 0 0 1px rgba(230,229,224,.22);
+  transition: box-shadow .24s ease, filter .24s ease;
+}
+.widget:has(> .Preview):hover {
+  box-shadow: inset 0 0 0 3px var(--gallery-accent);
+  filter: brightness(1.10);
+}
+.Preview .previewText .background {
+  background: rgba(8,10,12,.68);
+}
+/* Controls remain visible against the darker surface. */
+.FullscreenButton, .PlayButton {
+  opacity: .78;
+  transition: opacity .2s ease;
+}
+.FullscreenButton:hover, .PlayButton:hover {
+  opacity: 1;
+}
+.Scrubber .progress {
+  background-color: var(--gallery-accent) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .widget.Preview, .widget:has(> .Preview),
+  .FullscreenButton, .PlayButton { transition: none; }
+}
