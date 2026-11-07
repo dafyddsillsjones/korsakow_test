@@ -1,15 +1,12 @@
-/* Korsakow gallery treatment — visual overrides only.
-   Does not change the player's absolute positioning or navigation logic. */
+/* Korsakow gallery v2 — presentation only; player controls remain native. */
 :root { color-scheme: dark; }
-html, body, #korsakow-root { background: #11161a !important; }
-body { color: #e9e5dc; font-family: Georgia, 'Times New Roman', serif; }
-/* A visible, subtle gallery frame around the player area. */
-#korsakow-root { box-sizing: border-box; border: 12px solid #11161a; outline: 1px solid #8e7860; outline-offset: -12px; }
-/* Keep Korsakow-calculated sizes and positions untouched. */
-.MediaArea.loaded { filter: drop-shadow(0 8px 18px rgba(0,0,0,.48)); }
-.Preview.loaded { box-sizing: border-box; border: 2px solid rgba(205,174,126,.68); box-shadow: 0 6px 20px rgba(0,0,0,.55); transition: border-color .2s ease, filter .2s ease, box-shadow .2s ease; }
-.Preview.loaded:hover { border-color: #f5dfb6; filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(245,223,182,.2), 0 9px 25px rgba(0,0,0,.7); }
-.Preview .previewText .background { background-color: rgba(15,19,22,.72); }
-.PlayButton, .FullscreenButton { filter: drop-shadow(0 2px 5px rgba(0,0,0,.8)); }
-.Share { background: rgba(17,22,26,.85); border: 1px solid rgba(205,174,126,.5); }
-@media (max-width: 640px) { #korsakow-root { border-width: 5px; outline-offset: -5px; } .Preview.loaded { border-width: 1px; } }
+html, body, #korsakow-root { background: #111519 !important; }
+body { margin: 0; color: #e9e5dc; font-family: Georgia, 'Times New Roman', serif; }
+#korsakow-root { box-sizing: border-box; }
+.interface { background: #111519; }
+.MediaArea.loaded { background: #080a0c; box-shadow: 0 16px 48px rgba(0,0,0,.38); }
+.Preview.loaded { box-sizing: border-box; border: 1px solid rgba(202,170,123,.55); background: #090c0e; box-shadow: 0 7px 24px rgba(0,0,0,.34); transition: border-color .2s ease, filter .2s ease, box-shadow .2s ease; }
+.Preview.loaded:hover { border-color: #f1d6aa; filter: brightness(1.13); box-shadow: 0 0 0 2px rgba(241,214,170,.22), 0 10px 28px rgba(0,0,0,.48); }
+.Preview .previewText .background { background: rgba(8,12,15,.68); }
+.FullscreenButton, .PlayButton { filter: drop-shadow(0 1px 4px rgba(0,0,0,.85)); }
+.Share { background: rgba(17,21,25,.85); border: 1px solid rgba(202,170,123,.35); }
